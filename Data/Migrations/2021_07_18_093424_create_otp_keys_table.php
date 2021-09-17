@@ -16,7 +16,7 @@ class CreateOtpKeysTable extends Migration
              $table->integer('user_id')->unsigned();
 
               if(config('vendor-otpkey.primary_user_key_type') == 'bigInteger')
-               $table->bigInteger('votes');('user_id')->unsigned();
+               $table->bigInteger('user_id')->unsigned();
 
 
              $table->text('code');
