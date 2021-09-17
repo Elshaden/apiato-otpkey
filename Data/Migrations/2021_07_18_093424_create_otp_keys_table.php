@@ -12,13 +12,14 @@ class CreateOtpKeysTable extends Migration
     {
         Schema::create('otp_keys', function (Blueprint $table) {
             $table->id();
-             $table->bigInteger('user_id')->unsigned();
+             $table->config('vendor-otpkey.primary_user_key_type')('user_id')->unsigned();
              $table->text('code');
              $table->text('qr_code');
              $table->boolean('active')->default(1);
             $table->timestamps();
+            if(config('vendor-otpkey.add_foreign_key'))
+            $table->foreign('user_id')->references(config('vendor-otpkey.primary_user_key'))->on('users')->cascadeOnDelete();
 
-            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
         });
     }
 
