@@ -12,7 +12,13 @@ class CreateOtpKeysTable extends Migration
     {
         Schema::create('otp_keys', function (Blueprint $table) {
             $table->id();
-             $table->config('vendor-otpkey.primary_user_key_type')('user_id')->unsigned();
+              if(config('vendor-otpkey.primary_user_key_type') == 'integer')
+             $table->integer('user_id')->unsigned();
+
+              if(config('vendor-otpkey.primary_user_key_type') == 'bigInteger')
+               $table->bigInteger('votes');('user_id')->unsigned();
+
+
              $table->text('code');
              $table->text('qr_code');
              $table->boolean('active')->default(1);

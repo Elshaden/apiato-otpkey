@@ -19,5 +19,5 @@ return [
 
       'primary_user_key'=>'id',
 
-      'primary_user_key_type'=> 'integer',
+      'primary_user_key_type'=> 'integer',      // bigInteger or   integer
 ];
