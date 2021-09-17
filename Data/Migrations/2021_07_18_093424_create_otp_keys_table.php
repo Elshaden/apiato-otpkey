@@ -12,11 +12,13 @@ class CreateOtpKeysTable extends Migration
     {
         Schema::create('otp_keys', function (Blueprint $table) {
             $table->id();
-              if(config('vendor-otpkey.primary_user_key_type') == 'integer')
-             $table->integer('user_id')->unsigned();
+              if(config('vendor-otpkey.primary_user_key_type') == 'integer') {
+                    $table->integer('user_id')->unsigned();
+              }
 
-              if(config('vendor-otpkey.primary_user_key_type') == 'bigInteger')
-               $table->bigInteger('user_id')->unsigned();
+              if(config('vendor-otpkey.primary_user_key_type') == 'bigInteger') {
+                    $table->bigInteger('user_id')->unsigned();
+              }
 
 
              $table->text('code');
