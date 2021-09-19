@@ -41,4 +41,9 @@ class TwoFactorAuthenticationProvider
     {
         return $this->engine->verifyKey($secret, $code);
     }
+
+      public function getFreshCode(string $secret)
+      {
+            return $this->engine->getCurrentOtp($secret);
+      }
 }

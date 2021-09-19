@@ -24,5 +24,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('otpkeys', [Controller::class, 'createOtpKey'])
     ->name('api_otpkey_create_otp_key')
-  ->middleware(['azure:api']);
+  ->middleware(config('vendor-otpkey.auth_middleware'));
 

@@ -13,7 +13,7 @@ return [
       'QR_Code_size'=>120,  // Pixels
 
 
-       'auth_middleware'=>['azure:api']  ,
+       'auth_middleware'=>['auth:api']  ,
 
       'add_foreign_key' =>true,
 

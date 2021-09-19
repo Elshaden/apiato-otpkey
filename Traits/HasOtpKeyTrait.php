@@ -31,7 +31,14 @@ trait HasOtpKeyTrait
 
 
     }
-
+      public function GenerateCode(){
+            if($this->otp_key) {
+                  return app(MFA::class)->getFreshCode($this->otp_key->code);
+            } else{
+                  $record =  $this->CreateOtpKey();
+                  return app(MFA::class)->getFreshCode(decrypt($record->code));
+            }
+      }
     public function CreateOtpKey()
     {
         if ($this->HasOtp()) return $this->UpdateKey($this->HasOtp());

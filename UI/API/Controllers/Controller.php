@@ -2,10 +2,12 @@
 
 namespace App\Containers\Vendor\OtpKey\UI\API\Controllers;
 
+use App\Containers\Vendor\OtpKey\Actions\GenerateOtpCodeAction;
 use App\Containers\Vendor\OtpKey\Actions\VaildateOtpKeyByUserIdAction;
 use App\Containers\Vendor\OtpKey\UI\API\Requests\CreateOtpKeyRequest;
 use App\Containers\Vendor\OtpKey\UI\API\Requests\DeleteOtpKeyRequest;
 use App\Containers\Vendor\OtpKey\UI\API\Requests\FindOtpKeyByUserIdRequest;
+use App\Containers\Vendor\OtpKey\UI\API\Requests\GenerateOtpCodeRequest;
 use App\Containers\Vendor\OtpKey\UI\API\Requests\GetAllOtpKeysRequest;
 use App\Containers\Vendor\OtpKey\UI\API\Requests\FindOtpKeyByIdRequest;
 use App\Containers\Vendor\OtpKey\UI\API\Requests\UpdateOtpKeyRequest;
@@ -26,6 +28,14 @@ class Controller extends ApiController
         $otpkey = app(CreateOtpKeyAction::class)->run($request);
         return $this->created($this->transform($otpkey, OtpKeyTransformer::class));
     }
+
+
+      public function GenerateOtpCode(GenerateOtpCodeRequest $request): JsonResponse
+      {
+            $otpkey = app(GenerateOtpCodeAction::class)->run($request);
+            return response()->json(['code'=>$otpkey], 200) ;
+      }
+
 
     public function findOtpKeyById(FindOtpKeyByIdRequest $request): array
     {

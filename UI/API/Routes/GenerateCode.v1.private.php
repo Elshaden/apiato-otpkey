@@ -2,9 +2,9 @@
 
 /**
  * @apiGroup           OtpKey
- * @apiName            findOtpKeyById
+ * @apiName            createOtpKey
  *
- * @api                {GET} /v1/otpkeys/:id Endpoint title here..
+ * @api                {POST} /v1/otpkeys Endpoint title here..
  * @apiDescription     Endpoint description here..
  *
  * @apiVersion         1.0.0
@@ -14,15 +14,15 @@
  *
  * @apiSuccessExample  {json}  Success-Response:
  * HTTP/1.1 200 OK
-{
-  // Insert the response of the request here...
-}
+ * {
+ * // Insert the response of the request here...
+ * }
  */
 
 use App\Containers\Vendor\OtpKey\UI\API\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 
-Route::get('otpkeys/{id}', [Controller::class, 'findOtpKeyById'])
-    ->name('api_otpkey_find_otp_key_by_id')
-   ->middleware(config('vendor-otpkey.auth_middleware'));
+Route::get('generate-otpkey', [Controller::class, 'GenerateOtpCode'])
+    ->name('api_otpkey_generate_otp_code')
+  ->middleware(config('vendor-otpkey.auth_middleware'));
 
