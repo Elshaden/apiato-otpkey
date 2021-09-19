@@ -18,7 +18,7 @@ trait HasOtpKeyTrait
 
     public function otp_key()
     {
-        return $this->belongsTo(OtpKey::class);
+        return $this->hasOne(OtpKey::class);
     }
 
     public function HasOtp()
@@ -33,7 +33,8 @@ trait HasOtpKeyTrait
     }
       public function GenerateCode(){
             if($this->otp_key) {
-                  return app(MFA::class)->getFreshCode($this->otp_key->code);
+
+                  return app(MFA::class)->getFreshCode(decrypt($this->otp_key->code));
             } else{
                   $record =  $this->CreateOtpKey();
                   return app(MFA::class)->getFreshCode(decrypt($record->code));
@@ -84,13 +85,13 @@ trait HasOtpKeyTrait
         return $strAuthUrl;
     }
 
-    public function ValidateKey($Code)
+    public function ValidateKey($Code, $Slots)
     {
 
         $secret = $this->HasOtp();
         if (!$secret) throw new NotFoundException();
 
-        return app(MFA::class)->verify(decrypt($secret->code), $Code);
+        return app(MFA::class)->verify(decrypt($secret->code), $Code, $Slots);
     }
 
     private function GetResponse(OtpKey $OtpRecord)

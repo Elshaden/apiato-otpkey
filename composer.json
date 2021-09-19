@@ -20,6 +20,7 @@
     "require": {
         "bacon/bacon-qr-code": "^2.0",
         "pragmarx/google2fa": "^7.0|^8.0"
+
     },
     "extra": {
         "apiato": {

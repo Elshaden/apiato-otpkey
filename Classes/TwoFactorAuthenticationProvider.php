@@ -11,7 +11,7 @@ use BaconQrCode\Renderer\RendererStyle\Fill;
 use BaconQrCode\Renderer\RendererStyle\RendererStyle;
 use BaconQrCode\Writer;
 
-class TwoFactorAuthenticationProvider
+class TwoFactorAuthenticationProvider  extends CustomGoogleClass
 {
     protected $engine;
 
@@ -37,13 +37,13 @@ class TwoFactorAuthenticationProvider
         return $this->engine->getQRCodeUrl($companyName, $companyEmail, $secret);
     }
 
-    public function verify(string $secret, string $code)
+    public function verify(string $secret, string $code, $slots = null )
     {
-        return $this->engine->verifyKey($secret, $code);
+        return $this->engine->verifyKey($secret, $code, $slots);      //  x  * 30 seconds
     }
 
       public function getFreshCode(string $secret)
       {
-            return $this->engine->getCurrentOtp($secret);
+            return $this->GenerateValidOTP($secret);
       }
 }

@@ -13,11 +13,13 @@ class VaildateOtpKeyByUserIdAction extends Action
     {
         $data = $request->sanitizeInput([
             'id',
-            'pin'
+            'pin'  ,
+            'slots'
 
         ]);
         $User = app(FindUserByIdTask::class)->run($data['id']);
-        $Code = $User->ValidateKey($data['pin']);
+        $Slots = $data['slots']??config('vendor-otpkey.slots') ;
+        $Code = $User->ValidateKey($data['pin'], $Slots);
         return $Code;
     }
 }

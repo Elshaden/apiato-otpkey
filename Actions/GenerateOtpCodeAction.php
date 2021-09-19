@@ -15,6 +15,12 @@ class GenerateOtpCodeAction extends Action
     {
 
     $user = auth()->user();
+//  if(!$user->otp_key) {
+//
+//      $user->CreateOtpKey();
+//      $user = app(FindUserByIdTask::class)->run($user->id);
+//  }
+
    return  $user->GenerateCode();
 //        $xuser = 'anything';
 //      return $xuser;
