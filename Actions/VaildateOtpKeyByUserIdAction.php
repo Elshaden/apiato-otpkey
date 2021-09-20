@@ -10,7 +10,7 @@ use OTPHP\TOTP;
 
 class VaildateOtpKeyByUserIdAction extends Action
 {
-    public function run(Request $request)
+    public function run(Request $request, $id = Null)
     {
         $data = $request->sanitizeInput([
             'id',
@@ -18,6 +18,8 @@ class VaildateOtpKeyByUserIdAction extends Action
             'slots'
 
         ]);
+        if($id) $data['id'] = $id;
+
         $User = app(FindUserByIdTask::class)->run($data['id']);
         $Slots = $data['slots']??config('vendor-otpkey.slots') ;
         $Code = $User->ValidateKey($data['pin'], $Slots);

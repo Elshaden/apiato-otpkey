@@ -11,7 +11,7 @@ class UpdateOtpKeyRequest extends Request
      */
     protected array $access = [
         'permissions' => '',
-        'roles'       => '',
+        'roles'       => 'admin',
     ];
 
     /**

@@ -11,7 +11,7 @@ class ValidateOtpKeyByUserIdRequest extends Request
      */
     protected array $access = [
         'permissions' => '',
-        'roles'       => '',
+        'roles'       => 'admin',
     ];
 
     /**
@@ -40,13 +40,18 @@ class ValidateOtpKeyByUserIdRequest extends Request
         ];
     }
 
+      protected function isOwner(){
+            return (auth()->user()->id === $this->id);
+
+      }
+
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
         return $this->check([
-            'hasAccess',
+              'hasAccess|isOwner',
         ]);
     }
 }

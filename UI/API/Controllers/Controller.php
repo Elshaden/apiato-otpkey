@@ -12,12 +12,14 @@ use App\Containers\Vendor\OtpKey\UI\API\Requests\GetAllOtpKeysRequest;
 use App\Containers\Vendor\OtpKey\UI\API\Requests\FindOtpKeyByIdRequest;
 use App\Containers\Vendor\OtpKey\UI\API\Requests\UpdateOtpKeyRequest;
 use App\Containers\Vendor\OtpKey\UI\API\Requests\ValidateOtpKeyByUserIdRequest;
+use App\Containers\Vendor\OtpKey\UI\API\Requests\ValidateOtpKeyByUserTokenRequest;
 use App\Containers\Vendor\OtpKey\UI\API\Transformers\OtpKeyTransformer;
 use App\Containers\Vendor\OtpKey\Actions\CreateOtpKeyAction;
 use App\Containers\Vendor\OtpKey\Actions\FindOtpKeyByUserIdAction;
 use App\Containers\Vendor\OtpKey\Actions\GetAllOtpKeysAction;
 use App\Containers\Vendor\OtpKey\Actions\UpdateOtpKeyAction;
 use App\Containers\Vendor\OtpKey\Actions\DeleteOtpKeyAction;
+use App\Ship\Exceptions\NotFoundException;
 use App\Ship\Parents\Controllers\ApiController;
 use Illuminate\Http\JsonResponse;
 
@@ -49,7 +51,13 @@ class Controller extends ApiController
           return response()->json(['result'=>$Valid], 200);
     }
 
+      public function ValidateOtpKeyByUserToken(ValidateOtpKeyByUserTokenRequest $request){
+            $id = auth()->user()->id;
+             if($id == Null)  throw new NotFoundException('User Not Found');
 
+            $Valid = app(VaildateOtpKeyByUserIdAction::class)->run($request, $id);
+            return response()->json(['result'=>$Valid], 200);
+      }
     public function updateOtpKey(UpdateOtpKeyRequest $request): array
     {
         $otpkey = app(UpdateOtpKeyAction::class)->run($request);

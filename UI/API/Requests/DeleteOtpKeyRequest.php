@@ -11,7 +11,7 @@ class DeleteOtpKeyRequest extends Request
      */
     protected array $access = [
         'permissions' => '',
-        'roles'       => '',
+        'roles'       => 'admin',
     ];
 
     /**

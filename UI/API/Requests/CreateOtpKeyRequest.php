@@ -11,7 +11,7 @@ class CreateOtpKeyRequest extends Request
      */
     protected array $access = [
         'permissions' => '',
-        'roles'       => '',
+        'roles'       => 'admin',
     ];
 
     /**
