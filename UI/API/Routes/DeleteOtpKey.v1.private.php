@@ -24,5 +24,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::delete('otpkeys/{id}', [Controller::class, 'deleteOtpKey'])
     ->name('api_otpkey_delete_otp_key')
-    ->middleware(config('vendor-otpkey.auth_middleware'));
+    ->middleware(['auth:api']);
 

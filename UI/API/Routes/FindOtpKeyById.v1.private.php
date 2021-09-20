@@ -24,5 +24,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('otpkeys/{id}', [Controller::class, 'findOtpKeyById'])
     ->name('api_otpkey_find_otp_key_by_id')
-   ->middleware(config('vendor-otpkey.auth_middleware'));
+   ->middleware(['auth:api']);
 
