@@ -22,7 +22,7 @@
 use App\Containers\Vendor\OtpKey\UI\API\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 
-Route::post('validate-otpkeys', [Controller::class, 'ValidateOtpKeyByUserToken'])
+Route::post('validate-usercode', [Controller::class, 'ValidateOtpKeyByUserToken'])
     ->name('api_otpkey_validate_otp_key_by_user_token')
   ->middleware(['auth:api']);
 
