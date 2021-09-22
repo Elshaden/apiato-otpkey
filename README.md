@@ -19,7 +19,7 @@ Read more about the Apiato container installer in the [docs](http://apiato.io/do
 
 >and you are ready to go
 
-###Usage
+### Usage
 
 #### To find if user has MFA Key 
 
