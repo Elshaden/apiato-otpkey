@@ -1,27 +1,27 @@
-# [Apiato](https://github.com/apiato/apiato) 2FA Container
+* [Apiato](https://github.com/apiato/apiato) 2FA Container
 
-### Multi-Factor Authentication MFA  , 2FA.
+*** Multi-Factor Authentication MFA  , 2FA.
 
-####This Container is used to manage the 2 Factor Authentication using any app like Google Authenticator
+****This Container is used to manage the 2 Factor Authentication using any app like Google Authenticator
 
-####Note: This container is not fully tested, use with caution.
+****Note: This container is not fully tested, use with caution.
 
-###Installation
+***Installation
 Only Works in Existing Apiato Application   <br>
 Read more about the Apiato container installer in the [docs](http://apiato.io/docs/miscellaneous/container-installer)!
 
 <br>
 
-####Steps
+****Steps
 >Add the ***use HasOtpKeyTrait***  in the User Model
 
 >Migrate the  table 'otp_keys'
 
 >and you are ready to go
 
-###Usage
+***Usage
 
-####To find if user has MFA Key 
+****To find if user has MFA Key 
 
 ```
 $user-> HasOtp();
@@ -42,7 +42,7 @@ readable_updated_at
  ```
 <br>
 
-####To Create New MFA key
+****To Create New MFA key
  
 ````
 $user-> CreateOtpKey();
@@ -55,7 +55,7 @@ and the user Id
 
 <br>
 
-####Update the Key
+****Update the Key
 
 ````
 $user->UpdateKey();
@@ -65,7 +65,7 @@ This will regnertae the Key and updates the record
 
 <br>
 
-####To generate a QR code for a given code
+****To generate a QR code for a given code
 
 ````
 $user->GetQrCode($code) ;
@@ -73,7 +73,7 @@ $user->GetQrCode($code) ;
  <br>
 
 
-####To Verfiy a given Token is valid ( the six numbers in the authenticator)
+****To Verfiy a given Token is valid ( the six numbers in the authenticator)
 
 ````
 $user->ValidateKey($Code);       // The code must be the six digits in the Authenticator
@@ -82,7 +82,7 @@ $user->ValidateKey($Code);       // The code must be the six digits in the Authe
 
 <br>
 
-####Generate Code
+****Generate Code
 
 ````
 $user->GenerateCode();
@@ -94,7 +94,7 @@ The code should match any authenticator App's such as Google Authenticator
 
 <br>
 
-#API Endpoints
+*API Endpoints
 
 Endpoint | Method |Parameteres | Usage | Response
 | :--- | ---: | ---: | ------: | :---:
