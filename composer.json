@@ -14,7 +14,7 @@
         "Autenticator",
         "MFA"
     ],
-    "description": "Implementation of 2 factor Authentication using TOTP .",
+    "description": "Implementation of 2 factor Authentication using TOTP In Apiato Projects .",
     "type": "apiato-container",
     "license": "MIT",
     "require": {
