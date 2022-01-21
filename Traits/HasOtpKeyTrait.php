@@ -91,7 +91,7 @@ trait HasOtpKeyTrait
         $secret = $this->HasOtp();
         if (!$secret) throw new NotFoundException('No User Otp Token found');
 
-        return  app(MFA::class)->verify(decrypt($secret->code), $Code);
+        return  app(MFA::class)->verify(decrypt($secret->code), $Code, $Slots);
 
     }
 

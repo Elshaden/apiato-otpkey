@@ -24,5 +24,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::patch('otpkeys/{id}', [Controller::class, 'updateOtpKey'])
     ->name('api_otpkey_update_otp_key')
-  ->middleware(['auth:api']);
+  ->middleware([config('vendor-otpKey.auth_middleware')]);
 

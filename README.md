@@ -12,12 +12,20 @@ Read more about the Apiato container installer in the [docs](http://apiato.io/do
 
 <br>
 
+
+
+
 #### Steps
->Add the ***use HasOtpKeyTrait***  in the User Model
 
->Migrate the  table 'otp_keys'
+> composer require elshaden/apiato-otpkey 
 
->and you are ready to go
+> Add the ***use HasOtpKeyTrait***  in the User Model
+
+> Migrate the  table 'otp_keys'
+
+> and you are ready to go
+
+> Check Config File in Configs Dir for any changes
 
 ### Usage
 
@@ -99,14 +107,21 @@ The code should match any authenticator App's such as Google Authenticator
 Endpoint | Method |Parameteres | Usage | Response
 | :--- | ---: | ---: | ------: | :---:
 **/otpkeys**  | POST |user_id | Creates New User Token  | ``string "id",   int "user_id",  string "code",   image "qr_code" ``
-**/validate-otpkeys**  | POST |id , pin | Validates 6 digits pin   | ``bool "result" ``
+**/validate-otpkeys**  | POST |id , pin , slots| Validates 6 digits pin   | ``bool "result" ``
 **/validate-usercode**  | POST |pin | Validates pin By User Bearer Token  |  ``bool "result" ``
 **/generate-otpkey**  | GET | | Generates 6 Digits pin From  Bearer Token  | ``int "code"   ``
 
  In Addition to Find, delete and Update OtpToken for any user.    
 
+ Note when validating the Otp in  validate-otpkeys   slots  means validate the key for past <slots> of 30 seconds each.
 
+For example 10 Slots means 10 * 30 seconds = 300 seconds    / 60     =  5 minutes. So the Otp is valid for the pas 5 minutes.
 
+For 5 Minutes Token,   slots  =  5 * 60   = 300
+
+For one day Token,   slots  =  24 * 60 * 60   = 86400   
+
+the longer the period the more time it takes to check the validity, so please try to be conservative.
 
 
 

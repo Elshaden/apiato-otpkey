@@ -26,7 +26,7 @@ class GenerateOtpCodeRequest extends Request
      * validation rules on them and allows accessing them like request data.
      */
     protected array $urlParameters = [
-        // 'id',
+        'user_id',
     ];
 
     /**

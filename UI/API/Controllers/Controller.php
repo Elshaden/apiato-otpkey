@@ -52,10 +52,10 @@ class Controller extends ApiController
     }
 
       public function ValidateOtpKeyByUserToken(ValidateOtpKeyByUserTokenRequest $request){
-            $id = auth()->user()->id;
-             if($id == Null)  throw new NotFoundException('User Not Found');
+        //    $id = auth()?->user()?->id?? Null;
+             if(!auth()->check())  throw new NotFoundException('User Not Found');
 
-            $Valid = app(VaildateOtpKeyByUserIdAction::class)->run($request, $id);
+            $Valid = app(VaildateOtpKeyByUserIdAction::class)->run($request, auth()->user()->id);
             return response()->json(['result'=>$Valid], 200);
       }
     public function updateOtpKey(UpdateOtpKeyRequest $request): array
