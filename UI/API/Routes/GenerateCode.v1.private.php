@@ -25,5 +25,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('generate-otpkey', [Controller::class, 'GenerateOtpCode'])
     ->name('api_otpkey_generate_otp_code')
-  ->middleware(['auth:api']);
+  ->middleware([config('vendor-otpKey.auth_middleware')]);
 

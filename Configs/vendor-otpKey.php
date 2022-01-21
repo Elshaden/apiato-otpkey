@@ -41,6 +41,6 @@ return [
     */
 
 
-      'auth_middleware' => ['auth:api'],
+      'auth_middleware' => env('OTPKEY_MIDDLEWARE','auth:api'),
 
 ];

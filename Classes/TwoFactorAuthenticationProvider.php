@@ -37,9 +37,9 @@ class TwoFactorAuthenticationProvider  extends CustomGoogleClass
         return $this->engine->getQRCodeUrl($companyName, $companyEmail, $secret);
     }
 
-    public function verify(string $secret, string $code )
+    public function verify(string $secret, string $code, $Slots = Null )
     {
-        return $this->engine->verifyKey($secret, $code);      //  x  * 30 seconds
+        return $this->engine->verifyKey($secret, $code, $Slots);      //$Slots   x  * 30 seconds
     }
 
       public function getFreshCode(string $secret)
